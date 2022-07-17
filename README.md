@@ -1,6 +1,6 @@
 # projeto_perguntas
 
-A new Flutter project.
+Projeto de perguntas e respostas com Flutter e Dart.
 
 ## Getting Started
 
