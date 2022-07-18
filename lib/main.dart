@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta.dart';
@@ -19,23 +20,26 @@ class _PerguntaAppState extends State<PerguntaApp> {
     final perguntas = [
       {
         'texto': 'Qual é sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'], //lista
       },
       {
         'texto': 'Qual é o seu animal favorito?',
-        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'], //lista
       },
       {
         'texto': 'Qual é o seu instrutor favorito?',
-        'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+        'respostas': ['Maria', 'João', 'Leo', 'Pedro'], //lista
       }
     ];
 
-    List<Widget> respostas = [];
+    //codigo declarativo
+    List<String> respostas =
+        perguntas[_perguntaSelecionada].cast()['respostas'];
 
-    for (var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
-      respostas.add(Resposta(textoResp, _responder));
-    }
+    //código imperativo
+    //for (var textoResp in respostas) {
+    //  widgets.add(Resposta(textoResp, _responder));
+    //}
 
     return MaterialApp(
         home: Scaffold(
@@ -44,7 +48,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
             ),
             body: Column(children: <Widget>[
               Questao(perguntas[_perguntaSelecionada]['texto'] as String),
-              ...respostas,
+              //fazendo a listagem dos itens na tela,
+              ...respostas.map((t) => Resposta(t, _responder)).toList(),
             ])));
   }
 }
