@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
+import 'questionario.dart';
 import './resultado.dart';
 
 main() => runApp(PerguntaApp());
@@ -38,9 +37,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
   @override
   Widget build(BuildContext context) {
     //codigo declarativo
-    List<String> respostas = temPerguntaSelecionada
-        ? _perguntas[_perguntaSelecionada].cast()['respostas']
-        : [];
 
     //código imperativo
     //for (var textoResp in respostas) {
@@ -53,13 +49,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
           title: Text('Perguntas'),
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: <Widget>[
-                  Questao(_perguntas[_perguntaSelecionada]['texto'] as String),
-                  //fazendo a listagem dos itens na tela,
-                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                ],
-              )
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                responder: _responder)
             : Resultado(),
       ),
     );
