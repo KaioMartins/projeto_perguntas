@@ -1,18 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'questao.dart';
-import 'resposta.dart';
+import './questao.dart';
+import './resposta.dart';
 
 class Questionario extends StatelessWidget {
   final List<Map<String, Object>> perguntas;
   final int perguntaSelecionada;
-  final void Function() responder;
+  final void Function(int) quandoResponder;
 
-  Questionario({
+  const Questionario({
+    Key? key,
     required this.perguntas,
     required this.perguntaSelecionada,
-    required this.responder,
-  });
+    required this.quandoResponder,
+  }) : super(key: key);
 
   bool get temPerguntaSelecionada {
     return perguntaSelecionada < perguntas.length;
@@ -23,16 +23,16 @@ class Questionario extends StatelessWidget {
     List<Map<String, Object>> respostas = temPerguntaSelecionada
         ? perguntas[perguntaSelecionada].cast()['respostas']
         : [];
+
     return Column(
       children: <Widget>[
-        Questao(perguntas[perguntaSelecionada]['texto'] as String),
-        //fazendo a listagem dos itens na tela,
+        Questao(perguntas[perguntaSelecionada]['texto'].toString()),
         ...respostas.map((resp) {
           return Resposta(
             resp['texto'].toString(),
-            () => responder(resp['pontuacao']),
+            () => quandoResponder(int.parse(resp['pontuacao'].toString())),
           );
-        })
+        }).toList(),
       ],
     );
   }
