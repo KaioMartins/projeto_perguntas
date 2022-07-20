@@ -9,7 +9,7 @@ class Resultado extends StatelessWidget {
 
   String get fraseResultado {
     if (pontuacao < 8) {
-      return 'Parabéns!';
+      return 'Que burro, dá zero pra ele kkkkkk';
     } else if (pontuacao < 12) {
       return 'Você é bom!';
     } else if (pontuacao < 16) {

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
@@ -18,7 +17,7 @@ class Resposta extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
         style: ElevatedButton.styleFrom(
-            primary: Colors.blue, onPrimary: Colors.white),
+            backgroundColor: Colors.blue, foregroundColor: Colors.white),
       ),
     );
   }
